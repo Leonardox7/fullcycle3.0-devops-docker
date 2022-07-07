@@ -16,7 +16,7 @@ Endpoints disponíveis:
 Para adicionar um novo nome
   
 ```
-curl --location --request POST 'http://localhost:8080/' \
+curl --location --request POST 'http://localhost:8080/names' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "name": "Leonardo"
