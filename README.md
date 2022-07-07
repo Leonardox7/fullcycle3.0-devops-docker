@@ -7,6 +7,26 @@ O primeiro desafio consiste em criar um app golang que exiba no terminal "Code.e
 
 Link para o repositório no DockerHub [https://hub.docker.com/repository/docker/leonardomaia20/codeeducation]
 
-### 2 - Desafio Nodejs
-O segundo desafio é criar uma aplicação em nodejs que faça inserção e busca no banco de dados e permita a recuperação desses dados em forma de um template. Além disso deve ser utilizado o nginx para fazer o proxy reverso.
 
+### 2 - Desafio Nodejs
+O segundo desafio é criar uma aplicação em nodejs que faça inserção e busca no banco de dados e permita a recuperação desses dados em forma de um template. Além disso deve ser utilizado o nginx para fazer o proxy reverso. Na pasta "node" se encontra o código deste segundo desafio.
+
+Endpoints disponíveis:
+
+Para adicionar um novo nome
+  
+```
+curl --location --request POST 'http://localhost:8080/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Leonardo"
+}'
+```
+
+Buscar template html com a lista de nomes
+
+```
+curl --location --request GET 'http://localhost:8080/names' \
+--header 'Content-Type: application/json' \
+--data-raw ''
+```
