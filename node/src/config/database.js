@@ -13,6 +13,7 @@ class Database {
         host: env.DB_HOST,
         user: env.DB_USER,
         database: env.DB_NAME,
+        password: env.DB_PASS,
       });
       Database.instance = pool.promise();
     }

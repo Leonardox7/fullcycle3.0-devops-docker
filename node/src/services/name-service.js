@@ -1,14 +1,16 @@
 class NameService {
   constructor({ database }) {
-    this.database;
+    this.database = database;
   }
 
-  async save(name) {
+  async save({ name }) {
     await this.database.query('INSERT INTO names (name) VALUES (?)', [name]);
   }
 
   async findAll() {
-    const [_, fields] = await connection.execute('SELECT * FROM names');
-    return fields;
+    const [rows, _] = await this.database.execute('SELECT * FROM names');
+    return rows;
   }
 }
+
+module.exports = NameService;

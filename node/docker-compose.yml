@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+    container_name: app
+    networks:
+      - desafionet
+    depends_on:
+      - db
+    environment:
+      - PORT=3000
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_NAME=fullcycle
+      - DB_PASS=pastel
+  db:
+    image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: db
+    restart: always
+    tty: true
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=fullcycle
+      - MYSQL_ROOT_PASSWORD=pastel
+    networks:
+      - desafionet
+  nginx:
+    build:
+      context: ./nginx
+    container_name: nginx
+    ports:
+      - 8082:80
+    networks:
+      - desafionet
+    depends_on:
+      - app
+      - db
+
+networks:
+  desafionet:
+    driver: bridge
